@@ -12,3 +12,5 @@ Minecraft Server Decompiler &amp; Patcher
 **coming soon**
 ### Patching
 **also coming soon**
+## Thanks to
+- [Loom's Scripts](https://github.com/LoomDev/Loom/tree/21w18a/tools/scripts)
