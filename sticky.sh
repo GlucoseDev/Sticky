@@ -61,7 +61,8 @@ decom() {
 
     printf "Decompiling $mcVersion mapped Minecraft source...\n"
     mkdir -p ".cache/$mcVersion/decompiled/"
-    java -jar "fernflower/build/libs/fernflower.jar" -dgs=1 -hdc=0 -rbr=0 -asc=1 -udv=0 ".cache/$mcVersion/extracted/" "src/main/java"
+    java -jar "fernflower/build/libs/fernflower.jar" -dgs=1 -hdc=0 -rbr=0 -asc=1 -udv=0 ".cache/$mcVersion/extracted/" ".cache/$mcVersion/decompiled/"
+    cp -r .cache/$mcVersion/decompiled/net src/main/java/
     printf "Done!\n"
 }
 
@@ -72,6 +73,9 @@ decom
 mkdir src
 mkdir src/main
 mkdir src/main/java
+mkdir .cache
+mkdir .cache/$mcVersion
+mkdir .cache/$mcVersion/decompiled
 downloadMc "$1"
 tr
 fernflower
