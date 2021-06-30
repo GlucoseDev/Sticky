@@ -5,12 +5,6 @@ fi
 tr(){
   wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.1.72/tiny-remapper-0.3.1.72-fat.jar
 }
-fernflower(){
-  git clone https://github.com/fesh0r/fernflower.git
-  cd fernflower || exit 1
-  ./gradlew build
-  cd .. || exit 1
-}
 enigma(){
   wget https://maven.fabricmc.net/cuchaz/enigma-cli/0.21.6%2Bbuild.229/enigma-cli-0.21.6%2Bbuild.229-all.jar
 }
@@ -61,7 +55,7 @@ decom() {
 
     printf "Decompiling $mcVersion mapped Minecraft source...\n"
     mkdir -p ".cache/$mcVersion/decompiled/"
-    java -jar "fernflower/build/libs/fernflower.jar" -dgs=1 -hdc=0 -rbr=0 -asc=1 -udv=0 ".cache/$mcVersion/extracted/" ".cache/$mcVersion/decompiled/"
+    java -jar "./fernflower.jar" -dgs=1 -hdc=0 -rbr=0 -asc=1 -udv=0 ".cache/$mcVersion/extracted/" ".cache/$mcVersion/decompiled/"
     #cp -r .cache/$mcVersion/decompiled/net src/main/java/
     printf "Done!\n"
 }
@@ -78,6 +72,5 @@ mkdir .cache/$mcVersion
 mkdir .cache/$mcVersion/decompiled
 downloadMc "$1"
 tr
-fernflower
 enigma
 decompile
