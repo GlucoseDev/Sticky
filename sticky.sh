@@ -5,6 +5,9 @@ fi
 tr(){
   wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.1.72/tiny-remapper-0.3.1.72-fat.jar
 }
+fernflower(){
+  wget https://glucosedev.ml/resources/fernflower.jar
+}
 enigma(){
   wget https://maven.fabricmc.net/cuchaz/enigma-cli/0.21.6%2Bbuild.229/enigma-cli-0.21.6%2Bbuild.229-all.jar
 }
@@ -72,5 +75,6 @@ mkdir .cache/$mcVersion
 mkdir .cache/$mcVersion/decompiled
 downloadMc "$1"
 tr
+fernflower
 enigma
 decompile
