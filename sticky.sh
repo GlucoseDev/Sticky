@@ -67,14 +67,11 @@ mapServerJar
 decom
 }
 
-mkdir src
-mkdir src/main
-mkdir src/main/java
-mkdir .cache
-mkdir .cache/$mcVersion
-mkdir .cache/$mcVersion/decompiled
+mkdir -p .cache/$mcVersion/decompiled
 downloadMc "$1"
 tr
 fernflower
 enigma
 decompile
+# Glucose
+cp .cache/$mcVersion/server-deobf.jar libs/server-deobf.jar
