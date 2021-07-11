@@ -3,7 +3,7 @@ if [ "$1" == "" ]; then
   exit
 fi
 tr(){
-  wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.1.72/tiny-remapper-0.3.1.72-fat.jar
+  wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.2/tiny-remapper-0.3.2-fat.jar
 }
 fernflower(){
   wget https://glucosedev.ml/resources/fernflower.jar
@@ -44,7 +44,7 @@ decompile(){
     printf " Done!\n"
 
     printf "Mapping $mcVersion Minecraft server jar...\n"
-    java -jar "tiny-remapper-0.3.1.72-fat.jar" ".cache/$mcVersion/server.jar" ".cache/$mcVersion/server-deobf.jar" ".cache/$mcVersion/server.tiny" obf deobf --renameInvalidLocals || exit 1
+    java -jar "tiny-remapper-0.3.2-fat.jar" ".cache/$mcVersion/server.jar" ".cache/$mcVersion/server-deobf.jar" ".cache/$mcVersion/server.tiny" obf deobf --renameInvalidLocals || exit 1
 
     #printf "Installing $mcVersion mapped Minecraft server jar in your local maven repo..."
     #mvn install:install-file -Dfile=".cache/$mcVersion/server-deobf.jar" -DgroupId="ml.glucosedev" -DartifactId="minecraft-server" -Dversion="$mcVersion-SNAPSHOT" -Dpackaging="jar" > /dev/null
