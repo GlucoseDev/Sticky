@@ -3,13 +3,13 @@ if [ "$1" == "" ]; then
   exit
 fi
 tr(){
-  wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.1.72/tiny-remapper-0.3.1.72-fat.jar
+  wget https://maven.fabricmc.net/net/fabricmc/tiny-remapper/0.3.2/tiny-remapper-0.3.2-fat.jar
 }
 fernflower(){
   wget https://glucosedev.ml/resources/fernflower.jar
 }
 enigma(){
-  wget https://maven.fabricmc.net/cuchaz/enigma-cli/0.21.6%2Bbuild.229/enigma-cli-0.21.6%2Bbuild.229-all.jar
+  wget https://maven.fabricmc.net/cuchaz/enigma-cli/1.4.1/enigma-cli-1.4.1-all.jar
 }
 downloadMc(){
   mcVersion="$1"
@@ -40,11 +40,11 @@ downloadTargettedVersion
 decompile(){
   mapServerJar() {
     printf "Converting $mcVersion Minecraft mappings..."
-    java -cp "enigma-cli-0.21.6+build.229-all.jar" "cuchaz.enigma.command.Main" convert-mappings proguard ".cache/$mcVersion/server.txt" tinyv2:obf:deobf ".cache/$mcVersion/server.tiny" || exit 1
+    java -cp "enigma-cli-1.4.1-all.jar" "cuchaz.enigma.command.Main" convert-mappings proguard ".cache/$mcVersion/server.txt" tinyv2:obf:deobf ".cache/$mcVersion/server.tiny" || exit 1
     printf " Done!\n"
 
     printf "Mapping $mcVersion Minecraft server jar...\n"
-    java -jar "tiny-remapper-0.3.1.72-fat.jar" ".cache/$mcVersion/server.jar" ".cache/$mcVersion/server-deobf.jar" ".cache/$mcVersion/server.tiny" obf deobf --renameInvalidLocals || exit 1
+    java -jar "tiny-remapper-0.3.2-fat.jar" ".cache/$mcVersion/server.jar" ".cache/$mcVersion/server-deobf.jar" ".cache/$mcVersion/server.tiny" obf deobf --renameInvalidLocals || exit 1
 
     #printf "Installing $mcVersion mapped Minecraft server jar in your local maven repo..."
     #mvn install:install-file -Dfile=".cache/$mcVersion/server-deobf.jar" -DgroupId="ml.glucosedev" -DartifactId="minecraft-server" -Dversion="$mcVersion-SNAPSHOT" -Dpackaging="jar" > /dev/null
