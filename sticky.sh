@@ -46,8 +46,8 @@ decompile(){
     printf "Mapping $mcVersion Minecraft server jar...\n"
     java -jar "tiny-remapper-0.3.1.72-fat.jar" ".cache/$mcVersion/server.jar" ".cache/$mcVersion/server-deobf.jar" ".cache/$mcVersion/server.tiny" obf deobf --renameInvalidLocals || exit 1
 
-    printf "Installing $mcVersion mapped Minecraft server jar in your local maven repo..."
-    mvn install:install-file -Dfile=".cache/$mcVersion/server-deobf.jar" -DgroupId="ml.glucosedev" -DartifactId="minecraft-server" -Dversion="$mcVersion-SNAPSHOT" -Dpackaging="jar" > /dev/null
+    #printf "Installing $mcVersion mapped Minecraft server jar in your local maven repo..."
+    #mvn install:install-file -Dfile=".cache/$mcVersion/server-deobf.jar" -DgroupId="ml.glucosedev" -DartifactId="minecraft-server" -Dversion="$mcVersion-SNAPSHOT" -Dpackaging="jar" > /dev/null
     printf " Done!\n"
 }
 
@@ -67,14 +67,13 @@ mapServerJar
 decom
 }
 
-mkdir src
-mkdir src/main
-mkdir src/main/java
-mkdir .cache
-mkdir .cache/$mcVersion
-mkdir .cache/$mcVersion/decompiled
+mkdir -p .cache/$mcVersion/decompiled
 downloadMc "$1"
 tr
 fernflower
 enigma
 decompile
+# Glucose
+mkdir libs/
+echo "Copying deobfuscated jar into libs directory"
+cp .cache/$mcVersion/server-deobf.jar libs/server-deobf.jar
